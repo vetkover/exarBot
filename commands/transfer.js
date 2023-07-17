@@ -1,0 +1,22 @@
+const {internal} = require('../common/botTransfer.js')
+async function transfer(args, messageObj){
+    switch(args[0]){
+
+        case 'internal':
+            internal(args, messageObj)
+        break;
+
+      default:
+        let message = {     
+          id: lastMessage.user_id,  
+          text: "Неизвестная команда",
+          reply_id: lastMessage.message_id       
+        };
+        customMessage(message)
+        break;
+    }
+}
+
+
+
+module.exports = {transfer}

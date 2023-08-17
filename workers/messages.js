@@ -9,6 +9,8 @@ const {balance} = require(`../commands/balance.js`)
 const {help} = require(`../commands/help.js`)
 const {moneyBack} = require('../commands/returnFunds.js')
 const {transfer} = require('../commands/transfer.js')
+const {shop} = require('../commands/shop.js')
+const {subs} = require('../commands/subs.js')
 
 console.log('messages активировался');
 
@@ -17,8 +19,9 @@ async function entryPoint() {
     if(userIdArray.length > 0){
       for(i = 0; i < userIdArray.length; i++){
       let chatId = (await findUsersDB(userIdArray[i])).chatID;
-      let lastMessage = await getLastUnreadMessages(chatId);;
+      let lastMessage = await getLastUnreadMessages(chatId);
       if(lastMessage.text != undefined && lastMessage.text[0] === '/'){
+        console.log(lastMessage)
         let clearMessage = lastMessage.text.split('/')[1]
         handleCommand(clearMessage, lastMessage)
       }
@@ -53,6 +56,14 @@ async function entryPoint() {
 
       case 'transfer':
         transfer(args, lastMessage)
+        break;
+
+      case 'shop':
+        shop(args, lastMessage)
+        break;
+        
+      case 'subs':
+        subs(args, lastMessage)
         break;
 
       default:

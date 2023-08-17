@@ -7,7 +7,7 @@ async function balance(zero, messageObj){
     let message = {     
       id: messageObj.user_id,  
       reply_id: messageObj.message_id,
-        text: `Ваш баланс бота - ${balance.balance}$`        
+        text: `Ваш баланс бота - ${balance.balance}$.`        
       };
     customMessage(message)
 }

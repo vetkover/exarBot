@@ -4,7 +4,7 @@ async function createChat(id) { //создать диалог с пользов�
   const config = await configDB();
     try {
       const fetch = await import('node-fetch');
-      const response = await fetch.default(`https://api.exarcheia.ru/api/dialog/user/${id}`, {
+      const response = await fetch.default(`https://api.exarcheia.com/api/dialog/user/${id}`, {
         "headers": {
           "accept": "application/json, text/plain, */*",
           "accept-language": "en-US,en;q=0.9",
@@ -17,7 +17,7 @@ async function createChat(id) { //создать диалог с пользов�
           "sec-fetch-site": "same-site",
           "x-socket-id": "xyEXLz7_TFsxM7kKADQl"
         },
-        "referrer": "https://exarcheia.ru/",
+        "referrer": "https://exarcheia.com/",
         "referrerPolicy": "strict-origin-when-cross-origin",
         "body": null,
         "method": "GET",

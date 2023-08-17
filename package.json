@@ -1,5 +1,19 @@
 {
   "dependencies": {
-    "node-fetch": "^3.3.1"
-  }
+    "node-fetch": "^3.3.1",
+    "pm2": "^0"
+  },
+  "name": "exarbot",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "scripts": {
+    "nodemon": "nodemon main.js",
+    "pm2": "pm2 start main.js --no-daemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

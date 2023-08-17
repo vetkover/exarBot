@@ -78,8 +78,6 @@ async function updateUserParameter(id, parameter, newValue) {
   }
 }
 
-
-
 async function addUserToDatabase(newUser) {
   try {
     const fileData = await readFileData();
@@ -95,7 +93,11 @@ async function addUserToDatabase(newUser) {
       balance: 0,
       chatID: 0,
       internal_transactions: [],
-      external_transactions: []
+      external_transactions: [],
+      permissions: [],
+      subscriptions: {
+        arbitration: 0
+      }
     };
     fileData.users.push(newUserObj);
 
@@ -128,6 +130,75 @@ async function addToExternalTransactions(userId, newTransaction) {
   }
 }
 
+async function userPermission(userId){
+  const fileData = await readFileData();
+    const user = fileData.users.find(user => user.id === userId);
+    return user ? user.permissions : [];
+  }
+
+async function findUsersWithPermission(permissionToFind) {
+  try {
+    const fileData = await readFileData();
+    if (Array.isArray(fileData.users)) {
+      const usersWithPermission = fileData.users.filter(user => user.permissions.join(" ").includes(permissionToFind));
+      return usersWithPermission.map(user => user.id);
+    } else {
+      console.error("Пользователь не найден");
+      return [];
+    }
+  } catch (error) {
+    console.error('Ошибка чтения файла:', error);
+    return [];
+  }
+}
+
+
+async function findUsersWithSubscriptions() {
+  try {
+    const fileData = await readFileData();
+    const usersWithNonZeroSubscriptions = fileData.users.filter(
+      (user) => Object.values(user.subscriptions).some((value) => value !== 0)
+    );
+
+    const result = usersWithNonZeroSubscriptions.map((user) => {
+      return {
+        subscriptions: user.subscriptions,
+        permissions: user.permissions,
+        id: user.id,
+      };
+    });
+
+    return result;
+  } catch (error) {
+    console.error('Ошибка при поиске:', error);
+    return [];
+  }
+}
+
+async function updateUserSubscriptionsAndPermissions(userId, newArbitrationValue) {
+  try {
+    const fileData = await readFileData();
+    const user = fileData.users.find(user => user.id === userId);
+
+    if (user) {
+      user.subscriptions.arbitration = newArbitrationValue;
+
+      if (user.permissions.includes('arbitration')) {
+        const index = user.permissions.indexOf('arbitration');
+        user.permissions.splice(index, 1);
+      } else {
+        user.permissions.push('arbitration');
+      }
+
+      await fs.promises.writeFile(filePath, JSON.stringify(fileData, null, 2), 'utf8');
+    } else {
+      console.log(`Пользователь с id ${userId} не найден.`);
+    }
+  } catch (err) {
+    console.error('Ошибка при обновлении данных пользователя:', err);
+    throw err;
+  }
+}
 
 module.exports = {
   findUsersDB,
@@ -137,5 +208,9 @@ module.exports = {
   configDB,
   getFileData,
   addToExternalTransactions,
-  findUsersDBByLogin
+  findUsersDBByLogin,
+  userPermission,
+  findUsersWithPermission,
+  findUsersWithSubscriptions,
+  updateUserSubscriptionsAndPermissions
 };

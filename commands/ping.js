@@ -1,6 +1,6 @@
 const {customMessage} = require('../common/messages.js')
 
-async function ping(zero, messageObj){
+async function ping(args, messageObj){
     let message = {     
         id: messageObj.user_id,  
         reply_id: messageObj.message_id,

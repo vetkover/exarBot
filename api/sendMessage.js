@@ -4,7 +4,7 @@ async function sendMessages(chatId, body) { //отправить сообщен�
   const config = await configDB();
     try {
       const fetch = await import('node-fetch');
-      const response = await fetch.default(`https://api.exarcheia.ru/api/messages/create/${chatId}`, {
+      const response = await fetch.default(`https://api.exarcheia.com/api/messages/create/${chatId}`, {
         "headers": {
           "accept": "application/json, text/plain, */*",
           "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,nl;q=0.5,uk;q=0.4",
@@ -18,7 +18,7 @@ async function sendMessages(chatId, body) { //отправить сообщен�
           "sec-fetch-site": "same-site",
           "x-socket-id": "3n-eanZT72EjLwH4ACaC"
         },
-        "referrer": "https://exarcheia.ru/",
+        "referrer": "https://exarcheia.com/",
         "referrerPolicy": "strict-origin-when-cross-origin",
         "body": body,
         "method": "POST",

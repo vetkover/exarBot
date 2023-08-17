@@ -4,7 +4,7 @@ async function GetMessages(id) { //получить историю перепи�
   const config = await configDB();
     try {
       const fetch = await import('node-fetch');
-      const response = await fetch.default(`https://api.exarcheia.ru/api/messages/${id}/index`, {
+      const response = await fetch.default(`https://api.exarcheia.com/api/messages/${id}/index`, {
         headers: {
           accept: "application/json, text/plain, */*",
           "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,nl;q=0.5,uk;q=0.4",
@@ -17,7 +17,7 @@ async function GetMessages(id) { //получить историю перепи�
           "sec-fetch-site": "same-site",
           "x-socket-id": "nlf17dYShI6zvPQlAJTT"
         },
-        referrer: "https://exarcheia.ru/",
+        referrer: "https://exarcheia.com/",
         referrerPolicy: "strict-origin-when-cross-origin",
         "body": null,
         "method": "GET",

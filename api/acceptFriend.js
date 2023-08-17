@@ -1,9 +1,8 @@
 const {configDB} = require(`../stuff/databaseWork.js`)
 async function setAcceptFriend(id) { //принять в друзья человека по id
   const config = await configDB();
-    try {
       const fetch = await import('node-fetch');
-      const response = await fetch.default("https://api.exarcheia.ru/api/profile/friend/accept", {
+      const response = await fetch.default("https://api.exarcheia.com/api/profile/friend/accept", {
         "headers": {
           "accept": "application/json, text/plain, */*",
           "accept-language": "en-US,en;q=0.9",
@@ -17,7 +16,7 @@ async function setAcceptFriend(id) { //принять в друзья челов
           "sec-fetch-site": "same-site",
           "x-socket-id": "6IXVUbysU83fab9XACYq"
         },
-        "referrer": "https://exarcheia.ru/",
+        "referrer": "https://exarcheia.com/",
         "referrerPolicy": "strict-origin-when-cross-origin",
         "body": `{\"user\":${id}}`,
         "method": "PATCH",
@@ -30,10 +29,6 @@ async function setAcceptFriend(id) { //принять в друзья челов
       } catch (error) {
         return undefined
       }
-    } catch (error) {
-      console.error("Ошибка при выполнении запроса:", error);
-      return undefined;
-    }
   }
 
   async function acceptFriend(id){

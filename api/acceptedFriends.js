@@ -9,7 +9,7 @@ async function getAcceptedFriends(page) {
   try {
     const fetch = await import("node-fetch");
     const response = await fetch.default(
-      `https://api.exarcheia.ru/api/profile/user/632/friends/accepted?page=${page}`,
+      `https://api.exarcheia.com/api/profile/user/632/friends/accepted?page=${page}`,
       {
         headers: {
           accept: "application/json, text/plain, */*",
@@ -25,7 +25,7 @@ async function getAcceptedFriends(page) {
           "sec-fetch-site": "same-site",
           "x-socket-id": "nlf17dYShI6zvPQlAJTT",
         },
-        referrer: "https://exarcheia.ru/",
+        referrer: "https://exarcheia.com/",
         referrerPolicy: "strict-origin-when-cross-origin",
         body: null,
         method: "GET",

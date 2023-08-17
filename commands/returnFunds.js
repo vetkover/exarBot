@@ -14,7 +14,7 @@ async function moneyBack(args, messageObj){
       let message = {     
         id: messageObj.user_id,  
         reply_id: messageObj.message_id,
-        text: `Перевод выполнен, вы вернули себе ${commissionDown} с учетом комиссии Exarcheia и ваш баланс бота равен ${userDBUpdate.balance}`        
+        text: `Перевод выполнен, Вы вернули себе ${commissionDown}$ с учетом комиссии Exarcheia и ваш баланс бота равен ${userDBUpdate.balance}$`        
       };
 
       customMessage(message)
@@ -31,7 +31,7 @@ async function moneyBack(args, messageObj){
       let message = {     
         id: messageObj.user_id,  
         reply_id: messageObj.message_id,
-        text: `кажется ты пытаешься меня обмануть :/`        
+        text: `У Вас нет столько средств. Прошу помнить об 10% комисии Exarcheia`        
       };
 
       customMessage(message)

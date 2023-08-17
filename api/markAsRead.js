@@ -1,5 +1,5 @@
 const {configDB} = require(`../stuff/databaseWork.js`)
-async function markAsRead(id) { //создать диалог с пользователем
+async function markAsRead(id) { //указать диалог с пользователем прочитанным
   const config = await configDB();
     try {
       const fetch = await import('node-fetch');

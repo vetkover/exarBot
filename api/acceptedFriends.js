@@ -59,21 +59,19 @@ async function getUnreadFriends() {
   for (i = 0; i <= pagesCount; i++) {
     pageCount++;
     let data = await request(pageCount);
-    if (data) {
       let userOnPageCount = data["data"].length;
-      for (i = 0; i <= userOnPageCount - 1; i++) {
+      for (s = 0; s <= userOnPageCount - 1; s++) {
         if (
-          data["data"][i].count_not_read_messages != 0 &&
+          data["data"][s].count_not_read_messages != 0 &&
           data["data"][0].count_not_read_messages != null
         ) {
-          ids.push(data["data"][i].id);
+          ids.push(data["data"][s].id);
         }
       }
-      return ids;
-    } else {
-      return [];
     }
+    
+    return ids
   }
-}
+
 
 module.exports = { getAcceptedFriends, getUnreadFriends };
